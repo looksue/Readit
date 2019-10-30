@@ -1,10 +1,13 @@
-DROP DATABASE IF EXISTS Readit_db;
-CREATE DATABASE Readit_db;
-USE Readit_db;
+DROP DATABASE IF EXISTS readit_db;
+CREATE DATABASE readit_db;
+USE readit_db;
 CREATE TABLE books(
  id INTEGER(11) AUTO_INCREMENT NOT NULL,
- authorId INTEGER(11),
- title VARCHAR(100),
-  genre VARCHAR(50) NULL,
+ title VARCHAR(100) NOT NULL,
+ author VARCHAR(100) NOT NULL,
+ description VARCHAR(255) NULL,
+ genre VARCHAR(50) NULL,
+ rating DECIMAL(1,1),
+ cover VARCHAR(255),
  PRIMARY KEY (id)
 );
