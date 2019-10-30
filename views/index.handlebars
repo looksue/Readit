@@ -5,17 +5,31 @@
         <h1>{{msg}}</h1>
         <h2>Readit Project</h2>
         <form class="clearfix mb-4" action="POST">
-          <div class="form-group"> <!-- BOOK COLUMNS -->
+          <div class="form-group">
+            <!-- BOOK COLUMNS -->
             <label for="book-title">Title</label>
-            <input type="text" id="book-title" class="form-control" aria-describedby="book-title" placeholder="Enter Title">
+            <input type="text" id="book-title" class="form-control" aria-describedby="book-title"
+              placeholder="Enter Title">
           </div>
           <div class="form-group">
             <label for="book-author">Author</label>
-            <input type="text" id="book-author" class="form-control" aria-describedby="book-author" placeholder="Enter Author">
+            <input type="text" id="book-author" class="form-control" aria-describedby="book-author"
+              placeholder="Enter Author">
           </div>
           <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
+            <label for="book-summary">Summary</label>
+            <input type="text" class="form-control" id="book-summary" aria-describedby="book-summary"
+              placeholder="Enter Summary"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="book-genre">Genre</label>
+            <input type="text" id="book-genre" class="form-control" aria-describedby="book-genre"
+              placeholder="Enter Genre">
+          </div>
+          <div class="form-group">
+            <label for="book-rating">Critic Rating</label>
+            <input type="text" id="book-rating" class="form-control" aria-describedby="book-rating"
+              placeholder="Enter Book Rating">
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
