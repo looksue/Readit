@@ -1,47 +1,51 @@
 // Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
+var $bookTitle = $("#book-title");
+var $bookAuthor = $("#book-author");
+var $bookDescription = $("#book-description");
+var $bookGenre = $("#book-genre");
+var $bookRating = $("#book-rating");
+var $bookCover = $("#book-cover");
 var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+var $bookList = $("#book-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function(example) {
+  saveBook: function(book) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
+      url: "api/books",
+      data: JSON.stringify(book)
     });
   },
-  getExamples: function() {
+  getBooks: function() {
     return $.ajax({
-      url: "api/examples",
+      url: "api/books",
       type: "GET"
     });
   },
-  deleteExample: function(id) {
+  deleteBook: function(id) {
     return $.ajax({
-      url: "api/examples/" + id,
+      url: "api/books/" + id,
       type: "DELETE"
     });
   }
 };
 
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
+// refreshBooks gets new books from the db and repopulates the list
+var refreshBooks = function() {
+  API.getBooks().then(function(data) {
+    var $books = data.map(function(book) {
       var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
+        .text(book.title)
+        .attr("href", "/book/" + book.id);
 
       var $li = $("<li>")
         .attr({
           class: "list-group-item",
-          "data-id": example.id
+          "data-id": book.id
         })
         .append($a);
 
@@ -54,46 +58,54 @@ var refreshExamples = function() {
       return $li;
     });
 
-    $exampleList.empty();
-    $exampleList.append($examples);
+    $bookList.empty();
+    $bookList.append($books);
   });
 };
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
+// handleFormSubmit is called whenever we submit a new book
+// Save the new book to the db and refresh the list
 var handleFormSubmit = function(event) {
   event.preventDefault();
 
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
+  var book = {
+    title: $bookTitle.val().trim(),
+    author: $bookAuthor.val().trim(),
+    description: $bookDescription.val().trim(),
+    genre: $bookGenre.val().trim(),
+    rating: $bookRating.val().trim(),
+    cover: $bookCover.val().trim()
   };
 
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
+  if (!(book.title && book.author)) {
+    alert("You must enter a book title and author!");
     return;
   }
 
-  API.saveExample(example).then(function() {
-    refreshExamples();
+  API.saveBook(book).then(function() {
+    refreshBooks();
   });
 
-  $exampleText.val("");
-  $exampleDescription.val("");
+  $bookTitle.val("");
+  $bookAuthor.val("");
+  $bookDescription.val("");
+  $bookGenre.val("");
+  $bookRating.val("");
+  $bookCover.val("");
 };
 
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
+// handleDeleteBtnClick is called when an book's delete button is clicked
+// Remove the book from the db and refresh the list
 var handleDeleteBtnClick = function() {
   var idToDelete = $(this)
     .parent()
     .attr("data-id");
 
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
+  API.deleteBook(idToDelete).then(function() {
+    refreshBooks();
   });
 };
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+$bookList.on("click", ".delete", handleDeleteBtnClick);

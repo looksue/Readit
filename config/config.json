@@ -2,14 +2,14 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "Readit_db",
+    "database": "readit_db",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
     "password": "root",
-    "database": "Readit_db",
+    "database": "readit_db",
     "host": "localhost",
     "dialect": "mysql",
     "logging": false

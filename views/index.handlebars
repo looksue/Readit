@@ -5,9 +5,13 @@
         <h1>{{msg}}</h1>
         <h2>Readit Project</h2>
         <form class="clearfix mb-4" action="POST">
+          <div class="form-group"> <!-- BOOK COLUMNS -->
+            <label for="book-title">Title</label>
+            <input type="text" id="book-title" class="form-control" aria-describedby="book-title" placeholder="Enter Title">
+          </div>
           <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
+            <label for="book-author">Author</label>
+            <input type="text" id="book-author" class="form-control" aria-describedby="book-author" placeholder="Enter Author">
           </div>
           <div class="form-group">
             <label for="example-description">Example Description</label>
@@ -15,11 +19,11 @@
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
+        <h3>Books:</h3>
+        <ul id="book-list" class="list-group">
+          {{#each books}}
           <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
+            <a href="book/{{this.id}}">{{this.title}}</a>
             <button class="btn btn-danger float-right delete">ｘ</button>
           </li>
           {{/each}}
