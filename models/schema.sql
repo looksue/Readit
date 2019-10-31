@@ -1,13 +1,6 @@
+-- Drops the readit_db if it exists currently --
 DROP DATABASE IF EXISTS readit_db;
+-- Creates the "readit_db" database --
 CREATE DATABASE readit_db;
+-- USES the "readit_db" database --
 USE readit_db;
-CREATE TABLE books(
- id INTEGER(11) AUTO_INCREMENT NOT NULL,
- title VARCHAR(100) NOT NULL,
- author VARCHAR(100) NOT NULL,
- summary VARCHAR(255) NULL,
- genre VARCHAR(50) NULL,
- rating DECIMAL(1,1),
- cover VARCHAR(255),
- PRIMARY KEY (id)
-);
