@@ -1,7 +1,7 @@
 // Get references to page elements
 var $bookTitle = $("#book-title");
 var $bookAuthor = $("#book-author");
-var$bookSummary = $("#book-summary");
+var $bookSummary = $("#book-summary");
 var $bookGenre = $("#book-genre");
 var $bookRating = $("#book-rating");
 var $bookCover = $("#book-cover");
