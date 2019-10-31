@@ -1,7 +1,7 @@
 // Get references to page elements
 var $bookTitle = $("#book-title");
 var $bookAuthor = $("#book-author");
-var $bookDescription = $("#book-description");
+var $bookSummary = $("#book-summary");
 var $bookGenre = $("#book-genre");
 var $bookRating = $("#book-rating");
 var $bookCover = $("#book-cover");
@@ -71,14 +71,14 @@ var handleFormSubmit = function(event) {
   var book = {
     title: $bookTitle.val().trim(),
     author: $bookAuthor.val().trim(),
-    description: $bookDescription.val().trim(),
+    summary: $bookSummary.val().trim(),
     genre: $bookGenre.val().trim(),
     rating: $bookRating.val().trim(),
     cover: $bookCover.val().trim()
   };
 
-  if (!(book.title && book.author)) {
-    alert("You must enter a book title and author!");
+  if (!(book.title || book.author)) {
+    alert("You must enter a book title or author!");
     return;
   }
 
@@ -88,7 +88,7 @@ var handleFormSubmit = function(event) {
 
   $bookTitle.val("");
   $bookAuthor.val("");
-  $bookDescription.val("");
+  $bookSummary.val("");
   $bookGenre.val("");
   $bookRating.val("");
   $bookCover.val("");
