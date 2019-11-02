@@ -1,8 +1,10 @@
 <div id="home">
   <div class="container">
     <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
+      <div class="col-sm-6">
+        <p class="colHeading">Books I Want to Read</p>
+        <h1>{{title}}</h1> 
+        {{#unless this.read}}
         <h2>Readit Project</h2>
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
@@ -16,7 +18,30 @@
             <input type="text" id="book-author" class="form-control" aria-describedby="book-author"
               placeholder="Enter Author">
           </div>
+          <div class="form-group">
+            <label for="book-genre">Genre</label>
+            <input type="text" id="book-genre" class="form-control" aria-describedby="book-genre"
+              placeholder="Enter Genre">
+          </div>
+          {{/unless}}
 </div>
+
+      <div class="col-sm-6">
+        <p class="colHeading">Books Read</p>
+        {{title}}
+        {{#if this.read}}
+        <div class="booksread">
+          <div>
+            {{this.books_title}}. {{this.books_author}} {{this.books_genre}}
+          </div>
+        </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+
+
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>

@@ -1,7 +1,7 @@
 // Get references to page elements
 var $bookTitle = $("#book-title");
 var $bookAuthor = $("#book-author");
-var $bookSummary = $("#book-summary");
+var $bookDescription = $("#book-description");
 var $bookGenre = $("#book-genre");
 var $bookRating = $("#book-rating");
 var $bookCover = $("#book-cover");
@@ -71,7 +71,7 @@ var handleFormSubmit = function(event) {
   var book = {
     title: $bookTitle.val().trim(),
     author: $bookAuthor.val().trim(),
-    summary: $bookSummary.val().trim(),
+    description: $bookDescription.val().trim(),
     genre: $bookGenre.val().trim(),
     rating: $bookRating.val().trim(),
     cover: $bookCover.val().trim()
@@ -88,7 +88,7 @@ var handleFormSubmit = function(event) {
 
   $bookTitle.val("");
   $bookAuthor.val("");
-  $bookSummary.val("");
+  $bookDescription.val("");
   $bookGenre.val("");
   $bookRating.val("");
   $bookCover.val("");
