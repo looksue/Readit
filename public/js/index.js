@@ -1,10 +1,10 @@
 // Get references to page elements
 var $bookTitle = $("#book-title");
 var $bookAuthor = $("#book-author");
-var $bookDescription = $("#book-description");
+//var $bookDescription = $("#book-description");
 var $bookGenre = $("#book-genre");
-var $bookRating = $("#book-rating");
-var $bookCover = $("#book-cover");
+//var $bookRating = $("#book-rating");
+//var $bookCover = $("#book-cover");
 var $submitBtn = $("#submit");
 var $bookList = $("#book-list");
 
@@ -51,7 +51,7 @@ var refreshBooks = function() {
 
       var $button = $("<button>")
         .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
+        .text("delete");
 
       $li.append($button);
 
@@ -71,10 +71,7 @@ var handleFormSubmit = function(event) {
   var book = {
     title: $bookTitle.val().trim(),
     author: $bookAuthor.val().trim(),
-    description: $bookDescription.val().trim(),
-    genre: $bookGenre.val().trim(),
-    rating: $bookRating.val().trim(),
-    cover: $bookCover.val().trim()
+    genre: $bookGenre.val().trim()
   };
 
   if (!(book.title || book.author)) {
@@ -85,13 +82,9 @@ var handleFormSubmit = function(event) {
   API.saveBook(book).then(function() {
     refreshBooks();
   });
-
   $bookTitle.val("");
   $bookAuthor.val("");
-  $bookDescription.val("");
   $bookGenre.val("");
-  $bookRating.val("");
-  $bookCover.val("");
 };
 
 // handleDeleteBtnClick is called when an book's delete button is clicked

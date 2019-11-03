@@ -23,16 +23,26 @@
             <input type="text" id="book-genre" class="form-control" aria-describedby="book-genre"
               placeholder="Enter Genre">
           </div>
+          <button id="submit" class="btn btn-primary float-right">Submit</button>
+          </form>
           {{/unless}}
-</div>
-
+      <h3>Book Entered:</h3>
+        <ul id="sumbmitted-list" class="list-group">
+          {{#each book}}
+          <li data-id="{{this.title}}" class="list-group-item">
+            <a href="book/{{this.title}}">{{this.author}}{{this.genre}}</a>
+            <button class="btn btn-danger float-right delete">ｘ</button>
+          </li>
+          {{/each}}
+          </ul>
+          </div>
       <div class="col-sm-6">
         <p class="colHeading">Books Read</p>
         {{title}}
         {{#if this.read}}
         <div class="booksread">
           <div>
-            {{this.books_title}}. {{this.books_author}} {{this.books_genre}}
+            {{this.title}}. {{this.author}} {{this.genre}}
           </div>
         </div>
         {{/if}}
@@ -45,3 +55,4 @@
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
+<script src="/js/gRAxios.js"></script>
