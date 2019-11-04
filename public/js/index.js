@@ -1,23 +1,20 @@
 // Get references to page elements
-// var $bookTitle = 
-// var $bookAuthor =
-// //var $bookDescription = $("#book-description");
-// var $bookGenre = 
-//var $bookRating = $("#book-rating");
-//var $bookCover = $("#book-cover");
+
 var $submitBtn = $("#submit");
 var $bookList = $("#sumbmitted-list");
-var globalResults = {}
-// The API object contains methods for each kind of request we'll make
+var globalResults = {};
+
+// The API object contains methods for each kind of request being made
+
 var API = {
-  google:function (titleAuthor){
+  google: function(titleAuthor) {
     return $.ajax({
       type: "POST",
       url: "api/google/",
-      data: titleAuthor,
+      data: titleAuthor
     });
   },
-  saveBook: function (book) {
+  saveBook: function(book) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -27,13 +24,13 @@ var API = {
       data: JSON.stringify(book)
     });
   },
-  getBooks: function () {
+  getBooks: function() {
     return $.ajax({
       url: "api/books",
       type: "GET"
     });
   },
-  deleteBook: function (id) {
+  deleteBook: function(id) {
     return $.ajax({
       url: "api/books/" + id,
       type: "DELETE"
@@ -42,11 +39,12 @@ var API = {
 };
 
 // refreshBooks gets new books from the db and repopulates the list
-var refreshBooks = function () {
+
+var refreshBooks = function() {
   console.log("loading books");
-  API.getBooks().then(function (data) {
-    console.log(data)
-    var $books = data.map(function (book) {
+  API.getBooks().then(function(data) {
+    console.log(data);
+    var $books = data.map(function(book) {
       var $a = $("<a>")
         .text(book.title)
         .attr("href", "/book/" + book.id);
@@ -74,60 +72,76 @@ var refreshBooks = function () {
 
 // handleFormSubmit is called whenever we submit a new book
 // Save the new book to the db and refresh the list
-var handleFormSubmit = function (event) {
+
+var handleFormSubmit = function(event) {
   event.preventDefault();
 
   var book = {
-    title: $("#book-title").val().trim(),
-    author: $("#book-author").val().trim(),
+    title: $("#book-title")
+      .val()
+      .trim(),
+    author: $("#book-author")
+      .val()
+      .trim()
   };
 
-  console.log(book.title, book.author)
+  console.log(book.title, book.author);
   if (book.title || book.author) {
-    console.log('googling')
-    API.google(book).then(function (res) {
-      globalResults = res.items
-      $('#resContents').empty()
-      res.items.forEach((book, index) => {
-        var $row = $('<div>').addClass('row pb-2')
-        var $col1 = $('<div>').addClass('col-sm-4')
-        console.log(book.volumeInfo)
+    console.log("googling");
+
+    API.google(book).then(function(res) {
+      globalResults = res.items;
+
+      $("#resContents").empty();
+      res.items.forEach(function(book, index) {
+        var $row = $("<div>").addClass("row pb-2");
+        var $col1 = $("<div>").addClass("col-sm-4");
+
+        console.log(book.volumeInfo);
+
         //console.log(book.volumeInfo.imageLinks.smallThumbnail)
+
         if (book.volumeInfo.imageLinks) {
-          var $img = $('<img>').attr('src', book.volumeInfo.imageLinks.smallThumbnail)
-          $col1.append($img)
+          var $img = $("<img>").attr(
+            "src",
+            book.volumeInfo.imageLinks.smallThumbnail
+          );
+          $col1.append($img);
         }
         // <========== assign a place holder in else
-        var $col2 = $('<div>').addClass('col-sm-8')
-        var $title = $('<div>').html('<strong>Title: ' + book.volumeInfo.title + '</strong>')
-        var authors = ""
+        var $col2 = $("<div>").addClass("col-sm-8");
+        var $title = $("<div>").html(
+          "<strong>Title: " + book.volumeInfo.title + "</strong>"
+        );
+        var authors = "";
         if (book.volumeInfo.authors !== undefined) {
           for (let i = 0; i < book.volumeInfo.authors.length; i++) {
-            authors += book.volumeInfo.authors[i]
+            authors += book.volumeInfo.authors[i];
             if (i !== book.volumeInfo.authors.length - 1) {
-              authors += ', '
+              authors += ", ";
             }
           }
+        } else {
+          authors = "Unknown Author";
         }
-        else {
-          authors = "Unknown Author"
-        }
-        var $author = $('<div>').text('Author: ' + authors)
-        var $description = $('<div>').html('Description:<br>' + book.volumeInfo.description)
-        var $add = $('<button>').addClass('btn btn-success add')
-        $add.text('+')
-        $add.val(index)
-        $col2.append($title, $author, $description, $add)
-        $row.append($col1, $col2)
-        $('#resContents').append($row)
+        var $author = $("<div>").text("Author: " + authors);
+        var $description = $("<div>").html(
+          "Description:<br>" + book.volumeInfo.description
+        );
+        var $add = $("<button>").addClass("btn btn-success add");
+        $add.text("+");
+        $add.val(index);
+        $col2.append($title, $author, $description, $add);
+        $row.append($col1, $col2);
+        $("#resContents").append($row);
       });
-      console.log(res)
-      $('#results').modal(focus)
+      console.log(res);
+      $("#results").modal(focus);
     });
     //alert("You must enter a book title or author!");
     //return;
   }
-  
+
   // API.saveBook(book).then(function () {
   //   refreshBooks();
   // });
@@ -135,58 +149,55 @@ var handleFormSubmit = function (event) {
   // $bookAuthor.val("");
   // $bookGenre.val("");
 };
-$('#results').on('click', '.add', function () {
-  var theBook = globalResults[$(this).val()]
-  console.log($(this).val())
-  console.log(theBook)
-  var saveBook ={}
-  saveBook.title = theBook.volumeInfo.title
-  var authorz =''
+$("#results").on("click", ".add", function() {
+  var theBook = globalResults[$(this).val()];
+  console.log($(this).val());
+  console.log(theBook);
+  var saveBook = {};
+  saveBook.title = theBook.volumeInfo.title;
+  var authorz = "";
   if (theBook.volumeInfo.authors !== undefined) {
     for (let i = 0; i < theBook.volumeInfo.authors.length; i++) {
-      authorz += theBook.volumeInfo.authors[i]
+      authorz += theBook.volumeInfo.authors[i];
       if (i !== theBook.volumeInfo.authors.length - 1) {
-        authorz += ', '
+        authorz += ", ";
       }
     }
+  } else {
+    authorz = "Unknown Author";
   }
-  else {
-    authorz = "Unknown Author"
-  }
-  saveBook.genre = 'N/A'
-  saveBook.author = authorz
-  saveBook.summary = theBook.volumeInfo.description
-  if (!isNaN(theBook.volumeInfo.averageRating)){
-    saveBook.rating = theBook.volumeInfo.averageRating
-  }
-  else{
-    saveBook.rating = 'N/A'
+  saveBook.genre = "N/A";
+  saveBook.author = authorz;
+  saveBook.summary = theBook.volumeInfo.description;
+  if (!isNaN(theBook.volumeInfo.averageRating)) {
+    saveBook.rating = theBook.volumeInfo.averageRating;
+  } else {
+    saveBook.rating = "N/A";
   }
   if (theBook.volumeInfo.imageLinks) {
-    saveBook.cover = theBook.volumeInfo.imageLinks.smallThumbnail
+    saveBook.cover = theBook.volumeInfo.imageLinks.smallThumbnail;
+  } else {
+    saveBook.cover = "https://via.placeholder.com/100x100";
   }
-  else{
-    saveBook.cover = 'https://via.placeholder.com/100x100'
-  }
-  API.saveBook(saveBook).then(function () {
-    console.log('saved')
+  API.saveBook(saveBook).then(function() {
+    console.log("saved");
     refreshBooks();
   });
-})
+});
 // handleDeleteBtnClick is called when an book's delete button is clicked
 // Remove the book from the db and refresh the list
-var handleDeleteBtnClick = function () {
+var handleDeleteBtnClick = function() {
   var idToDelete = $(this)
     .parent()
     .attr("data-id");
 
-  API.deleteBook(idToDelete).then(function () {
+  API.deleteBook(idToDelete).then(function() {
     refreshBooks();
   });
 };
-$('#results').on('hidden.bs.modal', function () {
+$("#results").on("hidden.bs.modal", function() {
   // do something…
-  console.log('modal closed')
+  console.log("modal closed");
   refreshBooks();
 });
 // Add event listeners to the submit and delete buttons
