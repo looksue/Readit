@@ -4,6 +4,7 @@ module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
     db.Book.findAll({}).then(function(dbbooks) {
+      //console.log(dbbooks);
       res.render("index", {
         msg: "Readit!",
         books: dbbooks
