@@ -1,12 +1,12 @@
 // Get references to page elements
 var $bookTitle = $("#book-title");
-var $bookAuthor = $("#book-author");
-var $bookDescription = $("#book-description");
+/* var $bookAuthor = $("#book-author");
+ var $bookDescription = $("#book-description");
 var $bookGenre = $("#book-genre");
 var $bookRating = $("#book-rating");
 var $bookCover = $("#book-cover");
 var $submitBtn = $("#submit");
-var $bookList = $("#book-list");
+var $bookList = $("#book-list"); */
 
 // The API object contains methods for each kind of request we'll make
 var API = {
