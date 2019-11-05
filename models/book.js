@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
     {
       title: DataTypes.STRING,
       author: DataTypes.STRING,
-      summary: DataTypes.STRING,
+      summary: DataTypes.TEXT,
       genre: DataTypes.STRING,
       rating: DataTypes.STRING,
       cover: DataTypes.STRING
