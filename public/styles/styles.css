@@ -1,10 +1,14 @@
 .list-group-item {
   line-height: 2.5;
 }
-#home {
-  background-color:grey;
-}
 
-.btn-success {
-  
+body {
+  background-image: url("/assets/images/background8.jpeg");
+  z-index: -2;
+  content: "";
+  position: fixed; 
+  opacity: 0.8;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
 }
