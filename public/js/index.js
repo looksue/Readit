@@ -82,10 +82,10 @@ var handleFormSubmit = function(event) {
   var book = {
     title: $("#book-title")
       .val()
-      .trim(),
-    author: $("#book-author")
-      .val()
       .trim()
+    // author: $("#book-author")
+    //   .val()
+    //   .trim()
   };
 
   console.log(book.title, book.author);
