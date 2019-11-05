@@ -1,9 +1,6 @@
 .list-group-item {
   line-height: 2.5;
 }
-#home {
-  background-color:grey;
-}
 
 body {
   background-image: url("/assets/images/background8.jpeg");

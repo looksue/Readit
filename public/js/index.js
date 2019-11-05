@@ -1,5 +1,8 @@
 // Get references to page elements
 
+var $bookTitle = $("#book-title");
+
+
 var $submitBtn = $("#submit");
 var $bookList = $("#sumbmitted-list");
 var globalResults = {};
