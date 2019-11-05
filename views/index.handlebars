@@ -10,10 +10,11 @@
           <div class="form-group">
             <!-- BOOK COLUMNS -->
             <label for="book-title">Title</label>
-            <input type="text" id="book-title" class="form-control" aria-describedby="book-title"
+            <input type="text" id="book-title" class="form-control" aria-describedby="book-title">
       <div class="col-sm-6">
         <p class="colHeading">Books Read</p>
         {{title}}
+        {{/unless}}
         {{#if this.read}}
         <div class="booksread">
           <div>
