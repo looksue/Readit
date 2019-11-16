@@ -21,8 +21,6 @@ the tasks completed.
 
 **Tech/Framework:** Node, Express, JavaScript, MYSQL, Handlebars, ORM
 
-**Video Example:**
-[Readit](https://drive.google.com/file/d/1yq16JOymLbC4-ZgOrZCtdiVuvp9C6K6R/view)
-
 **Link to Project:**
-[Readit](https://github.com/ReyDiaz33/PRJ2)
+[Readit](https://github.com/looksue/Readit)
+
